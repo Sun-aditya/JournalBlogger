@@ -2,42 +2,16 @@
 
 import Link from "next/link";
 
-const posts = [
-  { title: "Building RepoJet", category: "Developer tools", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=900&q=85" },
-  { title: "Notes on backend systems", category: "Engineering", image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85" },
-  { title: "Learning through problem solving", category: "DSA", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" },
-  { title: "Making BinMap", category: "Full stack", image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=900&q=85" }
-];
-
-function Arrow() { return <span aria-hidden="true" className="arrow">&rarr;</span>; }
+const quickNotes = [["07.29", "Rebuilding my resume in LaTeX made every word earn its space"], ["07.24", "A freelance-management system taught me where role-based access gets tricky"], ["07.18", "Docker Compose made local development feel less accidental"], ["07.12", "BinMap: getting map interactions and data flow to cooperate"]];
 
 export default function Home() {
-  const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  return (
-    <main>
-      <section className="hero" id="home">
-        <nav className="nav" aria-label="Main navigation">
-          <button className="brand" onClick={() => scrollTo("home")} aria-label="Back to home">Aditya</button>
-          <div className="navlinks"><button onClick={() => scrollTo("home")}>Home</button><Link href="/blog">Blog</Link><button onClick={() => scrollTo("about")}>About</button><button onClick={() => scrollTo("contact")}>Contact</button></div>
-        </nav>
-        <div className="hero-copy reveal"><p className="eyebrow light">Software engineering notes</p><h1>Hi, I&apos;m <em>Aditya</em>.<br />I build things to<br />understand them.</h1></div>
-        <p className="hero-note reveal-delay">Developer tools, backend systems, and the problems that make software more interesting.</p>
-        <div className="hero-portrait"><img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1200&q=90" alt="Laptop on a developer's desk" /></div>
-      </section>
-
-      <section className="latest section" id="latest">
-        <div className="section-heading"><div><p className="eyebrow">Build log</p><h2>Latest Blog Posts</h2></div><Link href="/blog" className="text-link">View all <Arrow /></Link></div>
-        <div className="post-grid">{posts.map((post) => <Link href="/blog" className="post-card" key={post.title}><div className="post-image"><img src={post.image} alt="" /></div><p className="post-category">{post.category}</p><h3>{post.title}</h3><p className="post-summary">Notes from projects, systems I&apos;m exploring, and lessons from building.</p><span className="read-more">Read more <Arrow /></span></Link>)}</div>
-      </section>
-
-      <section className="about section" id="about">
-        <div className="about-content"><p className="eyebrow">About me</p><h2>I&apos;m a Computer Science student who likes figuring out how software works.</h2><p className="body-copy">I&apos;m Aditya Kumar Maurya, studying Computer Science Engineering at Chitkara University. I learn by building: from Go CLI tools that inspect repositories to full-stack applications with maps, databases, and authentication. Right now, I&apos;m focused on Java, DSA, Go, backend engineering, Docker, and developer experience.</p><button className="outline-btn" onClick={() => scrollTo("contact")}>Let&apos;s connect</button></div>
-        <div className="about-photo"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=90" alt="Developer working at a laptop" /></div>
-      </section>
-
-      <section className="social section" aria-label="Online profiles"><p className="eyebrow">Find me online</p>{["GitHub", "LinkedIn", "LeetCode"].map((item, index) => <a href="#" onClick={(e) => e.preventDefault()} key={item}><span>0{index + 1}</span><strong>{item}</strong><small>Visit <Arrow /></small></a>)}</section>
-      <section className="contact" id="contact"><div className="contact-inner"><div><p className="eyebrow light">Let&apos;s talk</p><h2>Have an idea to build?</h2><p>I&apos;m always interested in thoughtful conversations about software, developer tools, and interesting engineering problems.</p></div><a className="white-btn" href="mailto:hello@example.com">Get in touch <Arrow /></a></div></section>
-      <footer><span className="brand">Aditya</span><div><button onClick={() => scrollTo("home")}>Home</button><Link href="/blog">Blog</Link><button onClick={() => scrollTo("about")}>About</button><button onClick={() => scrollTo("contact")}>Contact</button></div><p>&copy; 2026 Aditya Kumar Maurya</p></footer>
-    </main>
-  );
+  return <main className="notes-home">
+    <header className="notes-header"><button className="notes-brand" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>field<span>.notes</span></button><nav aria-label="Main navigation"><a href="#home">Home</a><Link href="/blog">Blog</Link><a href="https://os-portfolio-livid.vercel.app/" target="_blank" rel="noreferrer">Portfolio ↗</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
+    <section className="notes-hero" id="home"><div className="notes-container notes-hero-grid"><div className="notes-fade-up"><p className="notes-eyebrow">Software engineering notes</p><h1>Hi, I&apos;m Aditya.<br />I build things to <em>understand</em> them.</h1><p className="notes-lead">A running log of developer tools, backend systems, and the DSA grind — mostly written the same day it happened.</p><div className="notes-stats"><div><b>Java</b>DSA practice</div><div><b>Go</b>developer tools</div><div><b>Build</b>to learn</div></div></div><div className="notes-terminal notes-fade-up-delay" aria-label="Developer profile terminal"><div className="terminal-bar"><span /><span /><span /></div><p><i>$</i> whoami</p><p className="terminal-output">aditya — CSE @ Chitkara</p><p><i>$</i> cat currently.log</p><p className="terminal-output">go, java, backend, docker, dsa</p><p><i>$</i> git log --oneline -3</p><p className="terminal-output">a1f92e explore repojet runtime detection</p><p className="terminal-output">c88ab1 solve knapsack dp variants</p><p className="terminal-output">7e02f4 <span className="cursor">ship, learn, repeat</span></p></div></div></section>
+    <section className="notes-about" id="about"><div className="notes-container notes-about-grid"><div className="notes-profile-card notes-fade-up"><div><span>role</span><b>CSE undergrad</b></div><div><span>university</span><b>Chitkara University</b></div><div><span>focus</span><b>Go · Java · Backend · DevOps</b></div><div><span>building</span><b>Developer tools & full-stack apps</b></div><div><span>learning now</span><b>Cloud & systems fundamentals</b></div></div><div className="notes-fade-up-delay"><p className="notes-eyebrow">About</p><h2>Computer Science student who learns by shipping, not just studying.</h2><p>I&apos;m Aditya Kumar Maurya, studying Computer Science Engineering at Chitkara University. I learn by building — from Go CLI tools that inspect repositories to full-stack apps with maps, databases, and authentication. This is where I write down what actually happened, not a polished highlight reel.</p><div className="notes-tags">{["Go", "Java", "TypeScript", "React", "Node.js", "PostgreSQL", "Docker", "Linux"].map((tag) => <span key={tag}>{tag}</span>)}</div></div></div></section>
+    <section className="notes-blog"><div className="notes-container"><div className="notes-blog-head"><div><p className="notes-eyebrow">Build log</p><h2>Latest entries</h2></div><Link href="/blog">View archive →</Link></div><div className="notes-blog-grid"><Link href="/blog" className="notes-feature-card"><div className="feature-code-art"><span>repojet</span><code>scan ./repository</code><code>detect runtime</code><code>prepare environment</code></div><div className="feature-body"><small>Deep dive</small><h3>Building RepoJet: a CLI that reads a repository first</h3><p>A Go CLI that scans a repo, detects the project type, and helps prepare it to run before you touch a single setup doc.</p><time>August 01, 2026 · 6 min read</time></div></Link><div className="notes-quick-stack">{quickNotes.map(([date, title]) => <Link href="/blog" className="notes-quick-item" key={title}><time>{date}</time><strong>{title}</strong><span>quick</span></Link>)}</div></div></div></section>
+    <section className="notes-links"><div className="notes-container"><p className="notes-eyebrow">Find me online</p>{[["GitHub", "Projects and source code"], ["LinkedIn", "Professional updates"], ["Portfolio", "Selected work"]].map(([name, handle]) => <a href={name === "Portfolio" ? "https://os-portfolio-livid.vercel.app/" : "#"} target={name === "Portfolio" ? "_blank" : undefined} rel={name === "Portfolio" ? "noreferrer" : undefined} key={name}><div><strong>{name}</strong><span>{handle}</span></div><b>visit →</b></a>)}</div></section>
+    <section className="notes-cta" id="contact"><p className="notes-eyebrow">Let&apos;s talk</p><h2>Have an idea to build?</h2><p>I&apos;m always up for a conversation about developer tools, backend systems, or an interesting bug.</p><a href="mailto:hello@example.com">Get in touch →</a></section>
+    <footer className="notes-footer"><span className="notes-brand">field<span>.notes</span></span><p>© 2026 Aditya Kumar Maurya</p></footer>
+  </main>;
 }

@@ -19,7 +19,7 @@ export default function BlogPage() {
   const [featured, ...remaining] = visible;
 
   return <main className="code-journal">
-    <header className="journal-header"><Link href="/" className="brand">Aditya</Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link className="active" href="/blog">Blog</Link><Link href="/#about">About</Link><Link href="/#contact">Contact</Link></nav></header>
+    <header className="journal-header"><Link href="/" className="brand">Aditya</Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link className="active" href="/blog">Blog</Link><a href="https://os-portfolio-livid.vercel.app/" target="_blank" rel="noreferrer">Portfolio ↗</a><Link href="/#about">About</Link><Link href="/#contact">Contact</Link></nav></header>
     <div className="code-journal-inner">
       <section className="code-intro"><p className="code-kicker">The engineering journal</p><h1>Things I&apos;m building,<br />learning, and<br />debugging.</h1><p>Notes from projects, DSA grinds, and everything in between — mostly written the same day it happened.</p></section>
       <div className="filter-row" aria-label="Filter posts">{filters.map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? "active" : ""}>--{filter === "all" ? "all" : `tag=${filter}`}</button>)}</div>
