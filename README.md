@@ -29,7 +29,7 @@ pnpm install
 pnpm dev
 ```
 
-Open <http://localhost:3000>.
+Open <https://fieldnotes-gamma.vercel.app>.
 
 ## Environment variables
 
