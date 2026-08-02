@@ -1,7 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
+import Link from "next/link";
+import { SiteHeader } from "@/components/site-header";
 
 const articles = [
   { title: "Building RepoJet: a CLI that reads a repository first", tag: "devtools", date: "Aug 01, 2026", read: "6 min", excerpt: "A look at the thinking behind a Go CLI that scans repositories, detects project files, and helps prepare a codebase to run — before you touch a single line of setup docs.", image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1500&q=85" },
@@ -10,24 +11,11 @@ const articles = [
   { title: "Notes on Docker, Compose, and local environments", tag: "devops", date: "Jul 18, 2026", read: "5 min", excerpt: "What containerizing projects taught me about dependencies, repeatable setups, and software that travels well.", image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=700&q=85" },
   { title: "A practical routine for DSA with Java", tag: "dsa", date: "Jul 12, 2026", read: "8 min", excerpt: "The pattern-recognition system I use for hard-level problems, and why tracing examples by hand still beats reading solutions.", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=85" }
 ];
-
 const filters = ["all", "devtools", "backend", "devops", "dsa"];
 
 export default function BlogPage() {
   const [activeFilter, setActiveFilter] = useState("all");
   const visible = useMemo(() => activeFilter === "all" ? articles : articles.filter((article) => article.tag === activeFilter), [activeFilter]);
   const [featured, ...remaining] = visible;
-
-  return <main className="code-journal">
-    <header className="journal-header"><Link href="/" className="brand">Aditya</Link><nav aria-label="Main navigation"><Link href="/">Home</Link><Link className="active" href="/blog">Blog</Link><a href="https://os-portfolio-livid.vercel.app/" target="_blank" rel="noreferrer">Portfolio ↗</a><Link href="/#about">About</Link><Link href="/#contact">Contact</Link></nav></header>
-    <div className="code-journal-inner">
-      <section className="code-intro"><p className="code-kicker">The engineering journal</p><h1>Things I&apos;m building,<br />learning, and<br />debugging.</h1><p>Notes from projects, DSA grinds, and everything in between — mostly written the same day it happened.</p></section>
-      <div className="filter-row" aria-label="Filter posts">{filters.map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? "active" : ""}>--{filter === "all" ? "all" : `tag=${filter}`}</button>)}</div>
-      {featured ? <>
-        <article className="featured-entry" key={featured.title}><div className="featured-image"><img src={featured.image} alt="" /></div><div className="featured-copy"><span className="featured-badge">Featured</span><h2>{featured.title}</h2><p>{featured.excerpt}</p><div className="entry-meta"><time>{featured.date}</time><span>·</span><span>{featured.read} read</span><span>·</span><button>Read entry &rarr;</button></div></div></article>
-        <section className="compact-entries" aria-label="More blog posts">{remaining.map((article, index) => <article className="compact-entry" key={article.title}><span className="entry-number">{String(index + 2).padStart(2, "0")}</span><img src={article.image} alt="" /><div><h2>{article.title}</h2><p>{article.excerpt}</p><div className="entry-meta"><span className="tag-pill">{article.tag}</span><time>{article.date}</time><span>·</span><span>{article.read}</span></div></div></article>)}</section>
-      </> : <div className="no-entries"><p>No posts under this tag yet.</p><button onClick={() => setActiveFilter("all")}>--all</button></div>}
-    </div>
-    <footer className="journal-footer"><Link href="/" className="brand">Aditya</Link><p>Built with curiosity. &copy; 2026 Aditya Kumar Maurya</p><Link href="/#contact">Get in touch &rarr;</Link></footer>
-  </main>;
+  return <main className="code-journal"><SiteHeader current="blog" /><div className="code-journal-inner"><section className="code-intro"><p className="code-kicker">The engineering journal</p><h1>Things I&apos;m building,<br />learning, and<br /><em>debugging.</em></h1><p>Notes from projects, DSA grinds, and everything in between — mostly written the same day it happened.</p></section><div className="filter-row" aria-label="Filter posts">{filters.map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? "active" : ""}>--{filter === "all" ? "all" : `tag=${filter}`}</button>)}</div>{featured ? <><article className="featured-entry" key={featured.title}><div className="featured-image"><img src={featured.image} alt="" /></div><div className="featured-copy"><span className="featured-badge">Featured</span><h2>{featured.title}</h2><p>{featured.excerpt}</p><div className="entry-meta"><time>{featured.date}</time><span>·</span><span>{featured.read} read</span><span>·</span><button>Read entry →</button></div></div></article><section className="compact-entries" aria-label="More blog posts">{remaining.map((article, index) => <article className="compact-entry" key={article.title}><span className="entry-number">{String(index + 2).padStart(2, "0")}</span><img src={article.image} alt="" /><div><h2>{article.title}</h2><p>{article.excerpt}</p><div className="entry-meta"><span className="tag-pill">{article.tag}</span><time>{article.date}</time><span>·</span><span>{article.read}</span></div></div></article>)}</section></> : <div className="no-entries"><p>No posts under this tag yet.</p><button onClick={() => setActiveFilter("all")}>--all</button></div>}</div><footer className="journal-footer"><Link href="/" className="notes-brand">field<span>.notes</span></Link><p>Built with curiosity. © 2026 Aditya Kumar Maurya</p><Link href="/#contact">Get in touch →</Link></footer></main>;
 }

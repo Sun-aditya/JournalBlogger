@@ -1082,6 +1082,11 @@ footer p {
 /* Typography from the field-notes reference */
 .font-display{font-family:"Zilla Slab",serif}.notes-home{font-family:"Public Sans",Arial,sans-serif}.notes-brand,.notes-about h2,.notes-blog h2,.notes-cta h2,.feature-body h3,.notes-quick-item strong,.notes-links strong,.notes-stats b{font-family:"Zilla Slab",Georgia,serif}.notes-hero h1.notes-heading{font-family:"Zilla Slab",serif;font-size:44px;font-weight:600;line-height:1.15;letter-spacing:normal;margin:0 0 18px;color:#2b2a28}.notes-hero h1.notes-heading em{font-family:inherit;font-weight:inherit;font-style:italic;color:#556b4f}.notes-eyebrow,.notes-stats,.notes-terminal,.notes-profile-card,.notes-tags span,.notes-blog-head>a,.notes-links a b,.feature-code-art,.feature-body small,.feature-body time,.notes-quick-item time,.notes-quick-item span,.notes-cta a{font-family:"JetBrains Mono",monospace}
 
+/* Blog typography and navigation share the homepage field-notes system. */
+.code-journal{font-family:"Public Sans",Arial,sans-serif}.code-journal .notes-header{background:var(--paper);color:var(--note-ink);border-top:2px solid var(--note-ink);border-bottom:1px solid var(--hairline)}.code-journal .notes-header nav a{color:var(--note-soft)}.code-journal .notes-header nav a:hover,.code-journal .notes-header nav a.active{color:var(--moss)}.code-intro h1,.featured-copy h2,.compact-entry h2{font-family:"Zilla Slab",Georgia,serif;font-weight:600}.code-kicker,.filter-row button,.entry-meta,.featured-badge,.tag-pill,.compact-entry .entry-number{font-family:"JetBrains Mono",monospace}.code-intro>p:last-child,.featured-copy>p,.compact-entry p{font-family:"Public Sans",Arial,sans-serif}
+.notes-header nav a.active{color:var(--moss)}
+.notes-header .notes-brand span,.journal-footer .notes-brand span{color:#556b4f}.code-intro h1{font-family:"Zilla Slab",serif;font-size:44px;font-weight:600;line-height:1.15;letter-spacing:normal;color:#2b2a28}.code-intro h1 em{font-family:inherit;font-weight:inherit;font-style:italic;color:#556b4f}
+
 @media (max-width:560px) {
     .journal-header {
         height:auto;
